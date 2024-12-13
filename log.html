@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 7.0 (Python 3.12.2 on win32)" name="Generator">
+<meta content="Robot Framework 7.1.1 (Python 3.12.3 on linux)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all">
 :root {
@@ -1252,58 +1252,48 @@ window.stats = (function () {
             });
     }
     function calculatePercents(total, passed, failed, skipped) {
-        if (total == 0) {
+        if (total == 0)
             return [0.0, 0.0, 0.0];
-        }
         var pass = 100.0 * passed / total;
         var skip = 100.0 * skipped / total;
         var fail = 100.0 * failed / total;
         if (pass > 0 && pass < 0.1)
-            pass = 0.1
+            pass = 0.1;
         if (fail > 0 && fail < 0.1)
-            fail = 0.1
+            fail = 0.1;
         if (skip > 0 && skip < 0.1)
-            skip = 0.1
+            skip = 0.1;
         if (pass > 99.95 && pass < 100)
-            pass = 99.9
+            pass = 99.9;
         if (fail > 99.95 && fail < 100)
-            fail = 99.9
+            fail = 99.9;
         if (skip > 99.95 && skip < 100)
-            skip = 99.9
-        return [Math.round(pass*10)/10, Math.round(skip*10)/10, Math.round(fail*10)/10];
+            skip = 99.9;
+        return [round1(pass), round1(skip), round1(fail)];
     }
     function calculateWidths(num1, num2, num3) {
         if (num1 + num2 + num3 === 0)
             return [0.0, 0.0, 0.0];
         // Make small percentages better visible
         if (num1 > 0 && num1 < 1)
-            num1 = 1
+            num1 = 1.0;
         if (num2 > 0 && num2 < 1)
-            num2 = 1
+            num2 = 1.0;
         if (num3 > 0 && num3 < 1)
-            num3 = 1
+            num3 = 1.0;
         // Handle situation where some are rounded up
         while (num1 + num2 + num3 > 100) {
-            if (num1 > num2 && num1 > num3)
-                num1 -= 0.1;
-            else if (num2 > num1 && num2 > num3)
-                num2 -= 0.1;
-            else if (num3 > num1 && num3 > num2)
-                num3 -= 0.1;
-            else if (num1 > num3 && num1 == num2) {
-                num1 -= 0.1;
-                num2 -= 0.1;
-            }
-            else if (num1 > num2 && num1 == num3) {
-                num1 -= 0.1;
-                num3 -= 0.1;
-            }
-            else if (num2 > num1 && num2 == num3) {
-                num2 -= 0.1;
-                num3 -= 0.1;
-            }
+            if (num1 >= num2 && num1 >= num3)
+                num1 = round1(num1 - 0.1);
+            else if (num2 >= num1 && num2 >= num3)
+                num2 = round1(num2 - 0.1);
+            else
+                num3 = round1(num3 - 0.1);
         }
-        return [Math.ceil(num1*10)/10, Math.ceil(num2*10)/10, Math.ceil(num3*10)/10];
+        return [num1, num2, num3];
+    }
+    function round1(num) {
+        return Math.round(num*10) / 10;
     }
     return {
         Statistics: Statistics
@@ -2081,25 +2071,25 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,15514],[],[[4,0,0,[],[1,210,15301],[[0,5,0,0,0,0,0,0,[1,210,5943],[[0,6,7,0,8,9,0,0,[1,210,2514],[[210,2,10]]],[0,11,7,0,12,13,0,0,[1,2725,112],[[2725,2,14]]],[0,15,7,0,16,17,0,0,[1,2838,315],[[2838,2,18]]],[0,19,20,0,21,22,0,0,[1,3152,3001],[[6153,2,23]]]]],[0,24,0,0,0,0,0,0,[1,6153,3185],[[0,25,7,0,26,27,0,0,[1,6153,86],[[6153,2,28]]],[0,29,7,0,30,31,0,0,[1,6240,99],[[6240,2,32],[6271,2,33]]],[0,19,20,0,21,22,0,0,[1,6338,3000],[[9339,2,23]]]]],[0,34,0,0,0,0,0,0,[1,9340,3100],[[0,15,7,0,16,35,0,0,[1,9340,56],[[9340,2,36]]],[0,15,7,0,16,37,0,0,[1,9396,44],[[9397,2,38]]],[0,19,20,0,21,22,0,0,[1,9440,3000],[[12441,2,23]]]]],[0,39,0,0,0,0,0,0,[1,12442,3070],[[0,11,7,0,12,40,0,0,[1,12442,69],[[12442,2,41]]],[0,19,20,0,21,22,0,0,[1,12511,3000],[[15512,2,23]]]]]]]],[],[1,1,0,0]];
+window.output["suite"] = [1,2,3,0,[],[1,0,18555],[],[[4,0,0,[],[1,258,18296],[[0,5,0,0,0,0,0,0,[1,259,8224],[[0,6,7,0,8,9,0,0,[1,260,3901],[[260,2,10]]],[0,11,7,0,12,13,0,0,[1,4161,542],[[4162,2,14]]],[0,15,7,0,16,17,0,0,[1,4704,779],[[4704,2,18]]],[0,19,20,0,21,22,0,0,[1,5483,3000],[[8483,2,23]]]]],[0,24,0,0,0,0,0,0,[1,8483,3532],[[0,25,7,0,26,27,0,0,[1,8484,240],[[8484,2,28]]],[0,29,7,0,30,31,0,0,[1,8724,281],[[8724,2,32],[8810,2,33]]],[0,19,20,0,21,22,0,0,[1,9005,3010],[[12015,2,23]]]]],[0,34,0,0,0,0,0,0,[1,12016,3321],[[0,15,7,0,16,35,0,0,[1,12017,147],[[12017,2,36]]],[0,15,7,0,16,37,0,0,[1,12164,171],[[12164,2,38]]],[0,19,20,0,21,22,0,0,[1,12334,3003],[[15337,2,23]]]]],[0,39,0,0,0,0,0,0,[1,15337,3212],[[0,11,7,0,12,40,0,0,[1,15338,211],[[15338,2,41]]],[0,19,20,0,21,22,0,0,[1,15549,3001],[[18549,2,23]]]]]]]],[],[1,1,0,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Login","*c:\\Users\\ge056758\\Desktop\\Particular\\Alura\\H3C\\Login.robot","eNqzSVTIKEpNs1VKy8xJtdLX13e20g8tTi0q1k9PNTA1Mze10HdJLc4uyS/QD0gsKslMLs1JLNJ3zCktStT3MHbW98lPz8zTK8pPyi9RsqPcDBv9RDsA2BEwog==","*Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado","*Dado que eu acesse a pagina de login do Switch","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*url=https://10.100.26.35/    browser=Chrome","*Opening browser 'Chrome' to base url '<a href=\"https://10.100.26.35/\">https://10.100.26.35/\x3c/a>'.","*Click Button","*<p>Clicks the button identified by <code>locator\x3c/code>.\x3c/p>","*id=details-button","*Clicking button 'id=details-button'.","*Click Element","*<p>Click the element identified by <code>locator\x3c/code>.\x3c/p>","*id=proceed-link","*Clicking element 'id=proceed-link'.","*Sleep","*BuiltIn","*<p>Pauses the test executed for the given time.\x3c/p>","*3","*Slept 3 seconds.","*E preencha usuario e senha corretamente","*Input Text","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*id=user_name    admin","*Typing text 'admin' into text field 'id=user_name'.","*Input Password","*<p>Types the given password into the text field identified by <code>locator\x3c/code>.\x3c/p>","*id=password    INtelbras@@12","*Typing password into text field 'id=password'.","*Temporally setting log level to: NONE","*E concorde com a política de privacidade e termos de uso","*id=Privacy_policy","*Clicking element 'id=Privacy_policy'.","*id=Use_terms","*Clicking element 'id=Use_terms'.","*E clique no botão login","*id=login_button","*Clicking button 'id=login_button'."]);
+window.output["strings"] = window.output["strings"].concat(["*","*Login","*/home/geison/PycharmProjects/TA/Login.robot","*Login.robot","*Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado","*Dado que eu acesse a pagina de login do Switch","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*url=https://10.100.26.35/    browser=Chrome","*Opening browser 'Chrome' to base url '<a href=\"https://10.100.26.35/\">https://10.100.26.35/\x3c/a>'.","*Click Button","*<p>Clicks the button identified by <code>locator\x3c/code>.\x3c/p>","*id=details-button","*Clicking button 'id=details-button'.","*Click Element","*<p>Click the element identified by <code>locator\x3c/code>.\x3c/p>","*id=proceed-link","*Clicking element 'id=proceed-link'.","*Sleep","*BuiltIn","*<p>Pauses the test executed for the given time.\x3c/p>","*3","*Slept 3 seconds.","*E preencha usuario e senha corretamente","*Input Text","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*id=user_name    admin","*Typing text 'admin' into text field 'id=user_name'.","*Input Password","*<p>Types the given password into the text field identified by <code>locator\x3c/code>.\x3c/p>","*id=password    INtelbras@@12","*Typing password into text field 'id=password'.","*Temporally setting log level to: NONE","*E concorde com a política de privacidade e termos de uso","*id=Privacy_policy","*Clicking element 'id=Privacy_policy'.","*id=Use_terms","*Clicking element 'id=Use_terms'.","*E clique no botão login","*id=login_button","*Clicking button 'id=login_button'."]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:15","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:16","fail":0,"id":"s1","label":"Login","name":"Login","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:18","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:19","fail":0,"id":"s1","label":"Login","name":"Login","pass":1,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1733839613327;
+window.output["baseMillis"] = 1734112542947;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 15522;
+window.output["generated"] = 18569;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;

@@ -1,98 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-12-10T11:06:53.320640" rpa="false" schemaversion="5">
-<suite id="s1" name="Login" source="c:\Users\ge056758\Desktop\Particular\Alura\H3C\Login.robot">
+<robot generator="Robot 7.1.1 (Python 3.12.3 on linux)" generated="2024-12-13T14:55:42.945898" rpa="false" schemaversion="5">
+<suite id="s1" name="Login" source="/home/geison/PycharmProjects/TA/Login.robot">
 <test id="s1-t1" name="Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado" line="9">
 <kw name="Dado que eu acesse a pagina de login do Switch">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:06:53.537162" level="INFO">Opening browser 'Chrome' to base url 'https://10.100.26.35/'.</msg>
+<msg time="2024-12-13T14:55:43.207116" level="INFO">Opening browser 'Chrome' to base url 'https://10.100.26.35/'.</msg>
 <arg>url=https://10.100.26.35/</arg>
 <arg>browser=Chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-12-10T11:06:53.537162" elapsed="2.513519"/>
+<status status="PASS" start="2024-12-13T14:55:43.206743" elapsed="3.901070"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:06:56.051681" level="INFO">Clicking button 'id=details-button'.</msg>
+<msg time="2024-12-13T14:55:47.108525" level="INFO">Clicking button 'id=details-button'.</msg>
 <arg>id=details-button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:06:56.051681" elapsed="0.112359"/>
+<status status="PASS" start="2024-12-13T14:55:47.108116" elapsed="0.542214"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:06:56.164549" level="INFO">Clicking element 'id=proceed-link'.</msg>
+<msg time="2024-12-13T14:55:47.650803" level="INFO">Clicking element 'id=proceed-link'.</msg>
 <arg>id=proceed-link</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:06:56.164549" elapsed="0.314677"/>
+<status status="PASS" start="2024-12-13T14:55:47.650578" elapsed="0.778823"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-12-10T11:06:59.480387" level="INFO">Slept 3 seconds.</msg>
+<msg time="2024-12-13T14:55:51.429993" level="INFO">Slept 3 seconds.</msg>
 <arg>3</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-12-10T11:06:56.479226" elapsed="3.001161"/>
+<status status="PASS" start="2024-12-13T14:55:48.429636" elapsed="3.000473"/>
 </kw>
-<status status="PASS" start="2024-12-10T11:06:53.537162" elapsed="5.943225"/>
+<status status="PASS" start="2024-12-13T14:55:43.206049" elapsed="8.224183"/>
 </kw>
 <kw name="E preencha usuario e senha corretamente">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:06:59.480387" level="INFO">Typing text 'admin' into text field 'id=user_name'.</msg>
+<msg time="2024-12-13T14:55:51.430964" level="INFO">Typing text 'admin' into text field 'id=user_name'.</msg>
 <arg>id=user_name</arg>
 <arg>admin</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:06:59.480387" elapsed="0.086164"/>
+<status status="PASS" start="2024-12-13T14:55:51.430794" elapsed="0.239569"/>
 </kw>
 <kw name="Input Password" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:06:59.566551" level="INFO">Typing password into text field 'id=password'.</msg>
-<msg time="2024-12-10T11:06:59.598469" level="INFO">Temporally setting log level to: NONE</msg>
+<msg time="2024-12-13T14:55:51.671191" level="INFO">Typing password into text field 'id=password'.</msg>
+<msg time="2024-12-13T14:55:51.756906" level="INFO">Temporally setting log level to: NONE</msg>
 <arg>id=password</arg>
 <arg>INtelbras@@12</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:06:59.566551" elapsed="0.098690"/>
+<status status="PASS" start="2024-12-13T14:55:51.670912" elapsed="0.281139"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-12-10T11:07:02.665543" level="INFO">Slept 3 seconds.</msg>
+<msg time="2024-12-13T14:55:54.961883" level="INFO">Slept 3 seconds.</msg>
 <arg>3</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-12-10T11:06:59.665241" elapsed="3.000302"/>
+<status status="PASS" start="2024-12-13T14:55:51.952261" elapsed="3.009770"/>
 </kw>
-<status status="PASS" start="2024-12-10T11:06:59.480387" elapsed="3.185156"/>
+<status status="PASS" start="2024-12-13T14:55:51.430492" elapsed="3.531675"/>
 </kw>
 <kw name="E concorde com a política de privacidade e termos de uso">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:07:02.667039" level="INFO">Clicking element 'id=Privacy_policy'.</msg>
+<msg time="2024-12-13T14:55:54.964016" level="INFO">Clicking element 'id=Privacy_policy'.</msg>
 <arg>id=Privacy_policy</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:07:02.667039" elapsed="0.055724"/>
+<status status="PASS" start="2024-12-13T14:55:54.963826" elapsed="0.146516"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:07:02.724119" level="INFO">Clicking element 'id=Use_terms'.</msg>
+<msg time="2024-12-13T14:55:55.110718" level="INFO">Clicking element 'id=Use_terms'.</msg>
 <arg>id=Use_terms</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:07:02.722763" elapsed="0.044461"/>
+<status status="PASS" start="2024-12-13T14:55:55.110539" elapsed="0.170690"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-12-10T11:07:05.767505" level="INFO">Slept 3 seconds.</msg>
+<msg time="2024-12-13T14:55:58.283891" level="INFO">Slept 3 seconds.</msg>
 <arg>3</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-12-10T11:07:02.767224" elapsed="3.000281"/>
+<status status="PASS" start="2024-12-13T14:55:55.281419" elapsed="3.002588"/>
 </kw>
-<status status="PASS" start="2024-12-10T11:07:02.667039" elapsed="3.100466"/>
+<status status="PASS" start="2024-12-13T14:55:54.962944" elapsed="3.321163"/>
 </kw>
 <kw name="E clique no botão login">
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-12-10T11:07:05.768521" level="INFO">Clicking button 'id=login_button'.</msg>
+<msg time="2024-12-13T14:55:58.284832" level="INFO">Clicking button 'id=login_button'.</msg>
 <arg>id=login_button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-12-10T11:07:05.768521" elapsed="0.068806"/>
+<status status="PASS" start="2024-12-13T14:55:58.284684" elapsed="0.210794"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-12-10T11:07:08.838510" level="INFO">Slept 3 seconds.</msg>
+<msg time="2024-12-13T14:56:01.496401" level="INFO">Slept 3 seconds.</msg>
 <arg>3</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-12-10T11:07:05.838347" elapsed="3.000163"/>
+<status status="PASS" start="2024-12-13T14:55:58.495655" elapsed="3.000875"/>
 </kw>
-<status status="PASS" start="2024-12-10T11:07:05.768521" elapsed="3.069989"/>
+<status status="PASS" start="2024-12-13T14:55:58.284424" elapsed="3.212227"/>
 </kw>
-<status status="PASS" start="2024-12-10T11:06:53.537162" elapsed="15.301348"/>
+<status status="PASS" start="2024-12-13T14:55:43.205270" elapsed="18.295571"/>
 </test>
-<status status="PASS" start="2024-12-10T11:06:53.326902" elapsed="15.513613"/>
+<status status="PASS" start="2024-12-13T14:55:42.946649" elapsed="18.554924"/>
 </suite>
 <statistics>
 <total>
