@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    Selenium.webdriver.chrome.service    # Importando a classe Service
 
 *** Variables ***
 ${URL}               https://10.100.26.35/
@@ -17,9 +16,7 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    ${options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
-    ${service}=    Create Instance    Selenium.webdriver.chrome.service.Service    ${CHROMEDRIVER_PATH}    # Criando a instância da Service
-    ${driver}=    Create WebDriver    Chrome    options=${options}    service=${service}    # Passando a instância do Service
+    Create WebDriver    Chrome    executable_path=${CHROMEDRIVER_PATH}    options=--headless
     Go To    ${URL}
     Click Button    id=details-button
     Click Element   id=proceed-link
