@@ -15,7 +15,8 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    Open Browser    ${URL}    Chrome
+    ${chrome_options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
+    Open Browser    ${URL}    Chrome    options=${chrome_options}
     Click Button    id=details-button
     Click Element   id=proceed-link
     Wait Until Element Is Visible    id=user_name    timeout=10s
@@ -34,7 +35,3 @@ E clique no botão login
     Click Button    id=login_button
     Wait Until Element Is Visible    xpath=//span[contains(text(),'Informações do Sistema')]    timeout=50s
     Close Browser
-
-
-
-
