@@ -32,8 +32,9 @@ E concorde com a política de privacidade e termos de uso
 
 E clique no botão login
     Click Button    id=login_button
-    Wait Until Page Contains    "Informações do Sistema"    timeout=30s
+    Wait Until Element Is Visible    xpath=//span[contains(text(),'Informações do Sistema')]    timeout=50s
     Close Browser
+
 
 
 
