@@ -2,9 +2,10 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${URL}              https://10.100.26.35/
-${USER_NAME}        admin
-${PASSWORD}         INtelbras@@12
+${URL}               https://10.100.26.35/
+${USER_NAME}         admin
+${PASSWORD}          INtelbras@@12
+${CHROMEDRIVER_PATH} /usr/local/bin/chromedriver  # Caminho atualizado
 
 *** Test Cases ***
 Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado
@@ -16,7 +17,7 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
     ${options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
-    ${driver}=    Create WebDriver    Chrome    options=${options}
+    ${driver}=    Create WebDriver    Chrome    options=${options}    executable_path=${CHROMEDRIVER_PATH}
     Go To    ${URL}
     Click Button    id=details-button
     Click Element   id=proceed-link
