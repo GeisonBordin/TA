@@ -1,11 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    Selenium.webdriver.chrome.service    # Importando a classe Service
 
 *** Variables ***
 ${URL}               https://10.100.26.35/
 ${USER_NAME}         admin
 ${PASSWORD}          INtelbras@@12
-${CHROMEDRIVER_PATH}    /usr/local/bin/chromedriver  # Caminho atualizado
+${CHROMEDRIVER_PATH}    /usr/local/bin/chromedriver
 
 *** Test Cases ***
 Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado
@@ -17,7 +18,8 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
     ${options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
-    ${driver}=    Create WebDriver    Chrome    options=${options}    executable_path=${CHROMEDRIVER_PATH}
+    ${service}=    Create Instance    Selenium.webdriver.chrome.service.Service    ${CHROMEDRIVER_PATH}    # Criando a instância da Service
+    ${driver}=    Create WebDriver    Chrome    options=${options}    service=${service}    # Passando a instância do Service
     Go To    ${URL}
     Click Button    id=details-button
     Click Element   id=proceed-link
