@@ -15,8 +15,8 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    ${chrome_options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
-    Create WebDriver    Chrome    options=${chrome_options}
+    ${options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
+    ${driver}=    Create WebDriver    Chrome    options=${options}
     Go To    ${URL}
     Click Button    id=details-button
     Click Element   id=proceed-link
