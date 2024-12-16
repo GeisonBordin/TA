@@ -32,5 +32,5 @@ E concorde com a política de privacidade e termos de uso
 
 E clique no botão login
     Click Button    id=login_button
-    Wait Until Page Contains    "Bem-vindo"    timeout=10s
+    Wait Until Page Contains    "Informações do Sistema"    timeout=10s
     Close Browser
