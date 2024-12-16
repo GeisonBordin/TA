@@ -19,19 +19,19 @@ Dado que eu acesse a pagina de login do Switch
     Open Browser      url=https://10.100.26.35/    browser=Chrome
     Click Button      id=details-button
     Click Element     id=proceed-link
-    Sleep    3
+    Sleep    5
     
 E preencha usuario e senha corretamente
     Input Text        id=user_name    admin
     Input Password    id=password    INtelbras@@12
-    Sleep    3
+    Sleep    5
 
 E concorde com a política de privacidade e termos de uso 
     Click Element    id=Privacy_policy
     Click Element    id=Use_terms
-    Sleep    3
+    Sleep    5
 
 E clique no botão login
     Click Button    id=login_button
-    Sleep    3
+    Sleep    5
     
