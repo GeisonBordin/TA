@@ -15,9 +15,11 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    Open Browser    ${URL}    Chrome    headless
-    Click Button    id=details-button
-    Click Element   id=proceed-link
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method           ${chrome_options}    add_argument    --headless
+    Open Browser          ${URL}    chrome    options=${chrome_options}
+    Click Button          id=details-button
+    Click Element         id=proceed-link
     Wait Until Element Is Visible    id=user_name    timeout=10s
 
 E preencha usuario e senha corretamente
