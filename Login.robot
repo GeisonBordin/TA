@@ -16,7 +16,8 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    Create WebDriver    Chrome    executable_path=${CHROMEDRIVER_PATH}    options=--headless
+    ${service}=    Create Chrome Service    executable_path=${CHROMEDRIVER_PATH}
+    Create WebDriver    Chrome    service=${service}    options=--headless
     Go To    ${URL}
     Click Button    id=details-button
     Click Element   id=proceed-link
