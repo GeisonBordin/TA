@@ -2,10 +2,9 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${URL}               https://10.100.26.35/
-${USER_NAME}         admin
-${PASSWORD}          INtelbras@@12
-${CHROMEDRIVER_PATH}    /usr/local/bin/chromedriver
+${URL}              https://10.100.26.35/
+${USER_NAME}        admin
+${PASSWORD}         INtelbras@@12
 
 *** Test Cases ***
 Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado
@@ -16,9 +15,8 @@ Verificar se ao preencher corretamente usuário e senha na página de login o sw
 
 *** Keywords ***
 Dado que eu acesse a pagina de login do Switch
-    ${service}=    Create Chrome Service    executable_path=${CHROMEDRIVER_PATH}
-    Create WebDriver    Chrome    service=${service}    options=--headless
-    Go To    ${URL}
+    ${chrome_options}=    Create Dictionary    headless=True    disable-gpu=True    no-sandbox=True
+    Open Browser    ${URL}    Chrome    options=${chrome_options}
     Click Button    id=details-button
     Click Element   id=proceed-link
     Wait Until Element Is Visible    id=user_name    timeout=10s
