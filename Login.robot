@@ -5,7 +5,7 @@ Library    SeleniumLibrary
 ${URL}               https://10.100.26.35/
 ${USER_NAME}         admin
 ${PASSWORD}          INtelbras@@12
-${CHROMEDRIVER_PATH} /usr/local/bin/chromedriver  # Caminho atualizado
+${CHROMEDRIVER_PATH}    /usr/local/bin/chromedriver  # Caminho atualizado
 
 *** Test Cases ***
 Verificar se ao preencher corretamente usuário e senha na página de login o switch é acessado
